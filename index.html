@@ -2,9 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Betting Strategy</title>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 </head>
 <body>
-$END$
+
+<section id="bettingStrategyApp">
+    <header id="header">
+        <h1>bets</h1>
+    </header>
+    <div id="chart"></div>
+    <footer id="footer">test</footer>
+</section>
+
+
+
+<script src="bower_components/jquery/jquery.js"></script>
+<script src="bower_components/underscore/underscore.js"></script>
+<script src="bower_components/backbone/backbone.js"></script>
+<script src="bower_components/backbone.localStorage/backbone.localStorage.js"></script>
+<script src="js/lib/GoogleChart.js" type="text/javascript"></script>
+<script src="js/models/bet.js"></script>
+<script src="js/collections/bets.js"></script>
+<script src="js/views/chart-view.js"></script>
+<script src="js/views/bet-view.js"></script>
+<script src="js/views/app-view.js"></script>
+<script src="js/routers/router.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
