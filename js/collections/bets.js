@@ -38,8 +38,8 @@ var app = app || {};
             });
 
             for (var i = 0; i <= 100; i++) {
-                this.create(betModel);
-                betModel.incrementCurrentWinningsBound();
+                this.push(betModel);
+                betModel = betModel.incrementCurrentWinningsBound();
             }
         }
     });

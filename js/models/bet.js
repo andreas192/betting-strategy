@@ -17,6 +17,8 @@ var app = app || {};
             betValue: 0
         },
 
+        url: 'test',
+
         // Set the incrementation value of a bet related to the current bet value
         incrementBetValue: function () {
             var betValue = this.get('betValue');
@@ -35,17 +37,16 @@ var app = app || {};
                     break;
             }
 
-            this.save({
-                betValue: betValue
-            });
+            this.set('betValue', betValue);
         },
 
         incrementCurrentWinningsBound: function () {
             this.incrementBetValue();
 
-            this.save({
-                currentWinnings: 2 * this.get('betValue')
-            });
+
+            this.set('currentWinnings', 2 * this.get('betValue'));
+
+            return this.clone();
         }
     });
 

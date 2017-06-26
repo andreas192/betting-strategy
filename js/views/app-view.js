@@ -46,36 +46,46 @@ var app = app || {};
             // from being re-rendered for every model. Only renders when the 'reset'
             // event is triggered at the end of the fetch.
 
+
+            app.Bets.initialise();
+            this.listenTo(app.Bets, 'initialise', this.addChart);
+            this.listenTo(app.Bets, 'reset', this.addChart);
             this.render();
-            app.Bets.fetch({reset: true});
+            // app.Bets.fetch({reset: true});
         },
 
         // Re-rendering the App just means refreshing the statistics -- the rest
         // of the app doesn't change.
         render: function () {
-            // var completed = app.todos.completed().length;
-            // var remaining = app.todos.remaining().length;
-            $('body').append(app.ChartView.render().el);
-            // if (app.todos.length) {
-            //     this.$main.show();
-            //     this.$footer.show();
-            //
-            //     this.$footer.html(this.statsTemplate({
-            //         completed: completed,
-            //         remaining: remaining
-            //     }));
-            //
-            //     this.$('#filters li a')
-            //         .removeClass('selected')
-            //         .filter('[href="#/' + (app.TodoFilter || '') + '"]')
-            //         .addClass('selected');
-            // } else {
-            //     this.$main.hide();
-            //     this.$footer.hide();
-            // }
-            //
-            // this.allCheckbox.checked = !remaining;
+            this.addChart();
         },
+
+        addChart: function () {
+            var dataTable = [];
+
+            app.Bets.each(function(bet) {
+                if(_.isEmpty(dataTable[0])) {
+                    dataTable[0] = [];
+                }
+                if(_.isEmpty(dataTable[1])) {
+                    dataTable[1] = [];
+                }
+                dataTable[0].push(bet.get('betValue'));
+                dataTable[1].push(bet.get('currentWinnings'));
+            });
+
+            var params = {
+                dataTable: dataTable
+            };
+
+            var ChartView = new app.ChartView(params);
+
+            // ChartView.setDataTable(dataTable);
+            // var ChartView = new app.ChartView({ dataTable: [['Germany', 'USA', 'Brazil', 'Canada', 'France', 'RU'],
+            //         [700, 300, 400, 500, 600, 800]] });
+
+            $('body').append(ChartView.render().el);
+        }
 
         // addOne: function (todo) {
         //     var view = new app.TodoView({ model: todo });
