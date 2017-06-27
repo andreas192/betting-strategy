@@ -37,10 +37,23 @@ var app = app || {};
                 betValue: 25
             });
 
-            for (var i = 0; i <= 100; i++) {
+            for (var i = 0; i <= 30; i++) {
                 this.push(betModel);
                 betModel = betModel.incrementCurrentWinningsBound();
             }
+        },
+
+        getDataTable: function () {
+            var dataTable = [];
+
+            this.models.forEach(function (model, modelIndex) {
+               dataTable.push([
+                   model.attributes.betValue,
+                   model.attributes.currentWinnings,
+               ])
+            });
+
+            return dataTable;
         }
     });
 

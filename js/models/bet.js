@@ -35,6 +35,10 @@ var app = app || {};
                 case betValue < 800:
                     betValue += 30;
                     break;
+                case betValue < 1600:
+                    betValue += 40;
+                    break;
+
             }
 
             this.set('betValue', betValue);
@@ -43,8 +47,9 @@ var app = app || {};
         incrementCurrentWinningsBound: function () {
             this.incrementBetValue();
 
+            var currentWinnings = this.get('currentWinnings');
 
-            this.set('currentWinnings', 2 * this.get('betValue'));
+            this.set('currentWinnings', currentWinnings + 2 * this.get('betValue'));
 
             return this.clone();
         }
