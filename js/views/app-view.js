@@ -57,7 +57,11 @@ var app = app || {};
         // Re-rendering the App just means refreshing the statistics -- the rest
         // of the app doesn't change.
         render: function () {
+            var self = this;
             this.addChart();
+            $(window).resize(function () {
+                self.addChart();
+            });
         },
 
         addChart: function () {
@@ -84,7 +88,7 @@ var app = app || {};
             // var ChartView = new app.ChartView({ dataTable: [['Germany', 'USA', 'Brazil', 'Canada', 'France', 'RU'],
             //         [700, 300, 400, 500, 600, 800]] });
 
-            $('body').append(ChartView.render().el);
+            $('#bettingStrategyApp').append(ChartView.render().el);
         }
 
         // addOne: function (todo) {

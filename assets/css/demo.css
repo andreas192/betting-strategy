@@ -62,3 +62,8 @@
 .tim-row h3{
     margin-top: 0;
 }
+
+#gviz {
+    width: 100%;
+    min-height: 450px;
+}

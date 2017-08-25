@@ -49,7 +49,7 @@ var app = app || {};
 
             var currentWinnings = this.get('currentWinnings');
 
-            this.set('currentWinnings', currentWinnings + 2 * this.get('betValue'));
+            this.set('currentWinnings', currentWinnings + 3 * this.get('betValue'));
 
             return this.clone();
         }

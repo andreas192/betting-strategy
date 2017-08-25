@@ -21,7 +21,7 @@ var app = app || {};
         render:function () {
 
             var dataTable = this.dataTable;
-            $(this.el).html('<div id="gviz" style="width:git 00px; height:600px;"></div>');
+            $(this.el).html('<div id="gviz"></div>');
             google.load('visualization', '1',  {'callback':this.drawVisualization,
                 'packages':['corechart', 'line']});
             return this;
@@ -38,14 +38,22 @@ var app = app || {};
 
             var options = {
                 hAxis: {
-                    title: 'Bet Value'
+                    title: 'Bet Value',
+                    logScale: false
                 },
                 vAxis: {
-                    title: 'Current Winnings'
+                    title: 'Current Winnings',
+                    // viewWindowMode: 'explicit',
+                    viewWindow: {
+                        // max: 180,
+                        min: 0,
+                    },
+                    gridlines: {
+                        count: 100,
+                    },
+                    // logScale:true
                 },
-                series: {
-                    1: {curveType: 'function'}
-                }
+                curveType: 'function'
             };
 
             var chart = new google.visualization.LineChart(this.$('#gviz').get(0));

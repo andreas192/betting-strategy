@@ -30,16 +30,16 @@ var app = app || {};
         // comparator: 'order'
 
         initialise: function () {
-            var betModel = app.Bet;
+            var bet = app.Bet;
 
-            betModel.set({
-                currentWinnings: 300,
-                betValue: 25
+            bet.set({
+                currentWinnings: 200,
+                betValue: 15
             });
 
-            for (var i = 0; i <= 30; i++) {
-                this.push(betModel);
-                betModel = betModel.incrementCurrentWinningsBound();
+            for (var i = 0; i <= 10; i++) {
+                this.push(bet);
+                bet = bet.incrementCurrentWinningsBound();
             }
         },
 
