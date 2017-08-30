@@ -8,11 +8,11 @@ var app = app || {};
 
     // The collection of bets is backed by *localStorage* instead of a remote
     // server.
-    var Bets = Backbone.Collection.extend({
+    var ProjectedBets = Backbone.Collection.extend({
         // Reference to this collection's model.
-        model: app.Bet,
+        model: app.ProjectedBet,
 
-        localStorage: new Backbone.LocalStorage('bets-backbone'),
+        localStorage: new Backbone.LocalStorage('projected-bets-backbone'),
 
         // completed: function () {
         //     return this.where({completed: true});
@@ -30,25 +30,25 @@ var app = app || {};
         // comparator: 'order'
 
         initialise: function () {
-            var bet = app.Bet;
+            var projectedBet = app.ProjectedBet;
 
-            bet.set({
+            projectedBet.set({
                 currentWinnings: 200,
-                betValue: 15
+                projectedBetValue: 15
             });
 
             for (var i = 0; i <= 10; i++) {
-                this.push(bet);
-                bet = bet.incrementCurrentWinningsBound();
+                this.push(projectedBet);
+                projectedBet = projectedBet.incrementCurrentWinningsBound();
             }
         },
 
         getDataTable: function () {
             var dataTable = [];
 
-            this.models.forEach(function (model, modelIndex) {
+            this.models.forEach(function (model) {
                dataTable.push([
-                   model.attributes.betValue,
+                   model.attributes.projectedBetValue,
                    model.attributes.currentWinnings,
                ])
             });
@@ -57,5 +57,5 @@ var app = app || {};
         }
     });
 
-    app.Bets = new Bets();
+    app.ProjectedBets = new ProjectedBets();
 })();

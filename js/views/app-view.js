@@ -47,9 +47,9 @@ var app = app || {};
             // event is triggered at the end of the fetch.
 
 
-            app.Bets.initialise();
-            this.listenTo(app.Bets, 'initialise', this.addChart);
-            this.listenTo(app.Bets, 'reset', this.addChart);
+            app.ProjectedBets.initialise();
+            this.listenTo(app.ProjectedBets, 'initialise', this.addChart);
+            this.listenTo(app.ProjectedBets, 'reset', this.addChart);
             this.render();
             // app.Bets.fetch({reset: true});
         },
@@ -67,15 +67,15 @@ var app = app || {};
         addChart: function () {
             var dataTable = [];
 
-            app.Bets.each(function(bet) {
+            app.ProjectedBets.each(function(projectedBet) {
                 if(_.isEmpty(dataTable[0])) {
                     dataTable[0] = [];
                 }
                 if(_.isEmpty(dataTable[1])) {
                     dataTable[1] = [];
                 }
-                dataTable[0].push(bet.get('betValue'));
-                dataTable[1].push(bet.get('currentWinnings'));
+                dataTable[0].push(projectedBet.get('projectedBetValue'));
+                dataTable[1].push(projectedBet.get('currentWinnings'));
             });
 
             var params = {

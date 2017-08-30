@@ -6,7 +6,7 @@ var app = app || {};
 (function () {
     'use strict';
 
-    var BetRouter = Backbone.Router.extend({
+    var ProjectedBetRouter = Backbone.Router.extend({
         routes: {
             '*filter': 'setFilter'
         },
@@ -21,6 +21,6 @@ var app = app || {};
         // }
     });
 
-    app.BetRouter = new BetRouter();
+    app.ProjectedBetRouter = new ProjectedBetRouter();
     Backbone.history.start();
 })();

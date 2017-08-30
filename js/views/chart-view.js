@@ -29,7 +29,7 @@ var app = app || {};
 
         drawVisualization:function (dataTable) {
             var data = new google.visualization.DataTable();
-            var dataValues = app.Bets.getDataTable();
+            var dataValues = app.ProjectedBets.getDataTable();
 
             data.addColumn('number', 'Bet Value');
             data.addColumn('number', 'Current Winnings');
